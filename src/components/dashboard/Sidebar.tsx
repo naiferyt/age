@@ -12,9 +12,11 @@ import {
   MenuIcon,
   XIcon,
   ChevronDownIcon,
-  ShieldCheckIcon,
+  SettingsIcon,
+  LogOutIcon,
 } from "@/components/icons";
 import { Badge } from "@/components/ui/Badge";
+import { PlanBadge } from "@/components/ui/PlanBadge";
 import { DEMO_SITES } from "@/lib/demo-data";
 
 export const Sidebar: React.FC = () => {
@@ -170,14 +172,19 @@ export const Sidebar: React.FC = () => {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileNavOpen(false)}
-                  className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-colors ${
+                  className={`relative flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-colors ${
                     active
                       ? "bg-brand-600 text-white shadow-sm"
                       : "text-slate-300 hover:bg-slate-800 hover:text-white"
                   }`}
                 >
+                  {active && (
+                    <span className="absolute -left-4 top-1/2 -translate-y-1/2 h-4 w-1 rounded-full bg-brand-400" />
+                  )}
                   <div className="flex items-center gap-2.5">
-                    {item.icon}
+                    <span className={active ? "text-white" : "text-slate-400 group-hover:text-white"}>
+                      {item.icon}
+                    </span>
                     <span>{item.name}</span>
                   </div>
                   {item.badge && (
@@ -195,24 +202,41 @@ export const Sidebar: React.FC = () => {
           </nav>
         </div>
 
-        {/* Footer info in sidebar */}
+        {/* Footer info in sidebar: account profile */}
         <div className="p-4 border-t border-slate-800 space-y-3">
-          <div className="p-2.5 rounded-lg bg-slate-800/60 border border-slate-700/60 text-xs">
-            <div className="flex items-center gap-1.5 text-slate-300 font-semibold mb-1">
-              <ShieldCheckIcon size={14} className="text-brand-400" />
-              <span>Plan Agencia (Ancla)</span>
+          <div className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/60">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                AG
+              </div>
+              <div className="min-w-0">
+                <div className="text-xs font-semibold text-white truncate">Agencia Growth</div>
+                <div className="text-[10px] text-slate-400 truncate">hola@agencygrowth.com</div>
+              </div>
             </div>
-            <p className="text-[11px] text-slate-400 leading-tight">
-              White-label activo. 4 de 10 clientes conectados.
-            </p>
+            <div className="flex items-center justify-between mt-2.5">
+              <PlanBadge plan="Agencia" size="sm" />
+              <span className="text-[10px] text-slate-400 font-mono">4/10 clientes</span>
+            </div>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-slate-400 px-1">
-            <Link href="/" className="hover:text-white transition-colors">
-              ← Volver al sitio
+          <div className="flex items-center gap-1">
+            <Link
+              href="/dashboard/integraciones"
+              className="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md text-[11px] font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-colors"
+            >
+              <SettingsIcon size={13} />
+              Ajustes
             </Link>
-            <span className="text-[10px] font-mono text-slate-400">v1.2-beta</span>
+            <Link
+              href="/"
+              className="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md text-[11px] font-medium text-slate-400 hover:bg-slate-800 hover:text-rose-400 transition-colors"
+            >
+              <LogOutIcon size={13} />
+              Salir
+            </Link>
           </div>
+          <div className="text-center text-[10px] font-mono text-slate-500">v1.2-beta</div>
         </div>
       </aside>
     </>

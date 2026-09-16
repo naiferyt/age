@@ -55,18 +55,18 @@ export const Hero: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto pt-2">
-            <Link href="/dashboard" className="w-full sm:w-auto">
+            <Link href="/onboarding" className="w-full sm:w-auto">
               <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-elevated group">
-                Explorar Dashboard Demo
+                Empezar Gratis (Plan Free)
                 <ArrowRightIcon
                   size={16}
                   className="group-hover:translate-x-1 transition-transform"
                 />
               </Button>
             </Link>
-            <Link href="/precios" className="w-full sm:w-auto">
+            <Link href="/dashboard" className="w-full sm:w-auto">
               <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                Ver los 5 Planes (Desde $0)
+                Explorar Demo sin Registro
               </Button>
             </Link>
           </div>
